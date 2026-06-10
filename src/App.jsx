@@ -3,8 +3,8 @@ import { CustomCursor } from './components/CustomCursor';
 import { Header } from './components/Header';
 
 const navigationItems = [
-  { label: 'Участники', href: '#participants', page: 'participants' },
-  { label: 'Клипы', href: '#clips', page: 'clips' },
+  // { label: 'Участники', href: '#participants', page: 'participants' },
+  // { label: 'Клипы', href: '#clips', page: 'clips' },
   { label: 'Правила', href: '#rules', page: 'rules' },
 ];
 
