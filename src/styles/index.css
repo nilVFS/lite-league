@@ -1,0 +1,280 @@
+@import '../../../src/styles/index.css';
+
+.app-shell {
+  width: 100%;
+  min-height: 100vh;
+  padding: clamp(14px, 1.4vw, 24px) clamp(18px, 2.4vw, 44px) 20px;
+}
+
+.site-header,
+.hero-stage,
+.site-footer {
+  width: min(100%, 2200px);
+  margin-inline: auto;
+}
+
+.site-header {
+  margin-bottom: clamp(18px, 2vw, 28px);
+  padding-inline: clamp(2px, 0.4vw, 12px);
+}
+
+.site-header__nav {
+  gap: clamp(12px, 1.2vw, 30px);
+}
+
+.hero-stage {
+  width: min(100%, 2200px);
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  width: min(100%, 1280px);
+  padding: clamp(24px, 4vh, 52px) 24px 34px;
+}
+
+.hero-mark__top {
+  font-size: clamp(1rem, 0.7vw + 0.75rem, 1.3rem);
+}
+
+.hero-mark__bottom {
+  font-size: clamp(0.72rem, 0.32vw + 0.58rem, 0.9rem);
+}
+
+.hero-copy h1 {
+  font-size: clamp(3.4rem, 4.8vw, 6.8rem);
+}
+
+.hero-title__top {
+  font-size: clamp(2.9rem, 4vw, 5.2rem);
+}
+
+.hero-title__bottom {
+  font-size: clamp(4rem, 6.6vw, 7.9rem);
+}
+
+.hero-subtitle {
+  margin-top: 18px;
+  font-size: clamp(1.35rem, 2vw, 2.2rem);
+}
+
+.hero-cta {
+  width: min(100%, 600px);
+  justify-self: center;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.participants-page,
+.clips-page,
+.rules-page,
+.intro-page {
+  width: min(100%, 2200px);
+  padding: clamp(30px, 3vw, 68px) clamp(20px, 2.2vw, 40px);
+}
+
+.intro-page {
+  display: grid;
+  place-items: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.intro-page {
+  gap: 0;
+}
+
+.intro-page__card {
+  width: min(94vw, 2140px);
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  min-height: clamp(480px, 48vh, 640px);
+  padding: clamp(36px, 3vw, 60px) clamp(40px, 3.8vw, 96px) clamp(34px, 3vw, 58px);
+  border: 1px solid rgba(196, 189, 180, 0.12);
+  background: linear-gradient(180deg, rgba(19, 19, 24, 0.88), rgba(10, 10, 14, 0.72));
+  box-shadow: inset 0 1px rgba(227, 220, 210, 0.05), 0 18px 40px rgba(0, 0, 0, 0.3);
+}
+
+.intro-page__card h1 {
+  margin: 0;
+  max-width: 16ch;
+  text-align: center;
+  font-size: clamp(1.75rem, 1.65vw, 2.9rem);
+  line-height: 0.96;
+  letter-spacing: 0.03em;
+}
+
+.intro-page__card p {
+  margin: 0;
+  max-width: 920px;
+  text-align: center;
+  font-size: clamp(0.92rem, 0.72vw, 1rem);
+  line-height: 1.7;
+}
+
+.intro-page__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.intro-page__cta {
+  width: min(100%, 600px);
+  max-width: 600px;
+  margin-top: 14px;
+}
+
+.participants-page__head,
+.clips-page__head,
+.rules-page {
+  text-align: center;
+}
+
+.participants-page__head p,
+.clips-page__head p,
+.rules-page p {
+  margin-inline: auto;
+  max-width: 1120px;
+}
+
+.participants-grid {
+  grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+}
+
+.clips-grid {
+  grid-template-columns: repeat(auto-fit, minmax(540px, 1fr));
+}
+
+.rules-grid {
+  width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.participant-card,
+.clip-card,
+.rules-card {
+  width: 100%;
+  min-height: 100%;
+  min-width: 0;
+}
+
+.rules-card {
+  gap: 20px;
+  padding: 28px 30px;
+}
+
+.participant-card h2,
+.clip-card__body h2,
+.rules-card__head h2 {
+  font-size: clamp(1.3rem, 1.05vw, 1.9rem);
+  line-height: 0.96;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.participant-card__head,
+.clip-card__body,
+.rules-card__head {
+  min-width: 0;
+}
+
+.rules-card__list p {
+  font-size: clamp(0.98rem, 0.82vw, 1.08rem);
+  line-height: 1.78;
+}
+
+@media (min-width: 1600px) {
+  .site-header,
+  .hero-stage,
+  .site-footer,
+  .participants-page,
+  .clips-page,
+  .rules-page,
+  .intro-page {
+    width: min(100%, 2200px);
+  }
+
+  .participants-grid {
+    grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
+  }
+
+  .clips-grid {
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  }
+
+  .rules-grid {
+    grid-template-columns: repeat(auto-fit, minmax(620px, 1fr));
+  }
+}
+
+@media (max-width: 920px) {
+  .site-header,
+  .hero-stage,
+  .site-footer,
+  .participants-page,
+  .clips-page,
+  .rules-page,
+  .intro-page {
+    width: min(100%, 100%);
+  }
+
+  .hero-content {
+    width: min(100%, 860px);
+    padding-inline: 12px;
+  }
+
+  .intro-page__card {
+    min-height: auto;
+  }
+
+  .intro-page__cta {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .participants-grid,
+  .clips-grid,
+  .rules-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    padding: 14px 12px 18px;
+  }
+
+  .site-header {
+    padding-inline: 0;
+  }
+
+  .site-header__nav {
+    gap: 12px 16px;
+  }
+
+  .hero-content {
+    padding: 24px 8px 24px;
+  }
+
+  .hero-cta {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .intro-page,
+  .participants-page,
+  .clips-page,
+  .rules-page {
+    padding-inline: 0;
+  }
+
+  .intro-page__card {
+    padding-inline: 18px;
+  }
+}
