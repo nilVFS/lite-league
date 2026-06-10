@@ -8,6 +8,46 @@ const navigationItems = [
   { label: 'Правила', href: '#rules', page: 'rules' },
 ];
 
+// Таймер
+// Целевая дата: 12 июня 2026, 20:00 МСК (UTC+3)
+const TARGET_DATE_MS = new Date('2026-06-12T20:00:00+03:00').getTime();
+
+function useCountdown() {
+  const [timeLeft, setTimeLeft] = useState(TARGET_DATE_MS - Date.now());
+
+  useEffect(() => {
+    // Если время уже вышло, незачем запускать интервал
+    if (timeLeft <= 0) return;
+
+    const intervalId = setInterval(() => {
+      const remaining = TARGET_DATE_MS - Date.now();
+      setTimeLeft(remaining <= 0 ? 0 : remaining);
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [timeLeft]);
+
+  return useMemo(() => {
+    if (timeLeft <= 0) {
+      return { expired: true, string: 'Лига стартовала!' };
+    }
+
+    const seconds = Math.floor((timeLeft / 1000) % 60);
+    const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+    const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+
+    // Форматируем с ведущими нулями для красоты (01:05:09 вместо 1:5:9)
+    const pad = (num) => String(num).padStart(2, '0');
+
+    let string = '';
+    if (days > 0) string += `${days}день `;
+    string += `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+
+    return { expired: false, string };
+  }, [timeLeft]);
+}
+
 const SCENE_TRANSITION_MS = 650;
 const API_BASE_URL = (import.meta.env.VITE_API_URL ?? 'http://localhost:8000').replace(/\/$/, '');
 const INTRO_STEPS = [
@@ -289,17 +329,19 @@ export default function App() {
   const [authUsers, setAuthUsers] = useState([]);
   const [activeClip, setActiveClip] = useState(null);
   const [twitchStatuses, setTwitchStatuses] = useState({});
-  const titleTop = useRuneScramble('Afonya', {
+  const titleTop = useRuneScramble('Not for All', {
     delay: 100,
     duration: 950,
     tick: 64,
   });
 
-  const titleBottom = useRuneScramble('League 2', {
+  const titleBottom = useRuneScramble('League', {
     delay: 420,
     duration: 1100,
     tick: 64,
   });
+
+  const countdown = useCountdown(); 
 
   const titleComplete = titleTop.isDone && titleBottom.isDone;
   const subtitleClassName = useMemo(
@@ -562,30 +604,35 @@ export default function App() {
         <h1>
           <span
             className="hero-title__top hero-title__scramble"
-            data-final-text="Afonya"
+            data-final-text="Not for All"
           >
             <span className="hero-title__ghost" aria-hidden="true">
-              Afonya
+              Not for All
             </span>
             <span className="hero-title__live">{titleTop.text}</span>
           </span>
           <span
             className="hero-title__bottom hero-title__scramble"
-            data-final-text="League 2"
+            data-final-text="League"
           >
             <span className="hero-title__ghost" aria-hidden="true">
-              League 2
+              League
             </span>
             <span className="hero-title__live">{titleBottom.text}</span>
           </span>
         </h1>
         <p className={subtitleClassName}>
-          <span>10.07.26</span>
-          {/* <span>избранным</span> */}
+          <span>12.06.26</span>
+          <span className="hero-countdown" style={{ marginLeft: '1rem', fontVariantNumeric: 'tabular-nums', textTransform: 'lowercase' }}>
+            {countdown.string}
+          </span>
         </p>
       </div>
 
-      <a className="hero-cta" href="#join" onClick={handleJoinClick}>
+      {/* <a className="hero-cta" href="#join" onClick={handleJoinClick}>
+        <span className="hero-cta__label">Вступить</span>
+      </a> */}
+      <a className="hero-cta" href="#join">
         <span className="hero-cta__label">Вступить</span>
       </a>
     </section>
@@ -808,7 +855,7 @@ export default function App() {
 
       <Header
         activeView={activeView}
-        brand="Afonya League 2"
+        brand="Not For All League"
         navigationItems={navigationItems}
         onBrandClick={handleBrandClick}
         onNavigationClick={handleNavigationClick}
